@@ -1,0 +1,58 @@
+.back-btn {
+  color: #f8f9fa;
+}
+.createform {
+  width: 71%;
+  margin: 1rem;
+}
+.dropdown {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+.issuetable {
+  margin: 1rem;
+}
+.search-input {
+  /* display: block; */
+  /* width: 100%; */
+  padding: 0.2rem 0.2rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  appearance: none;
+  border-radius: 0.25rem;
+  margin: 0.3rem;
+}
+.search-input-dropdown {
+  padding: 0.2rem 0.2rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  margin: 0.3rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.btn-grp {
+  margin: 0.3rem;
+  display: inline-flex;
+}
+.search-btn {
+  margin: 0 0.3rem;
+}
