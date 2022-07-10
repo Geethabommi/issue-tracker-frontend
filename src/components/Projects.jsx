@@ -7,15 +7,6 @@ import $ from 'jquery';
 const API_URL = process.env.REACT_APP_API_URL;
 
 const Projects = (props) => {
-  console.log(props);
-  const user = JSON.parse(
-    localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
-  )?.userID;
-  if (!user) {
-    localStorage.clear();
-    props.history.push('/');
-    return;
-  }
   const [currentUser, setCurrentUser] = useState(
     props.location.state?.currentUser
   );
@@ -25,6 +16,15 @@ const Projects = (props) => {
   const [errorMsg, setErrorMsg] = useState('');
   const [successMsg, setsuccessMsg] = useState('');
 
+  console.log(props);
+  const user = JSON.parse(
+    localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
+  )?.userID;
+  if (!user) {
+    localStorage.clear();
+    props.history.push('/');
+    return;
+  }
   const hidetoast = () => {
     console.log('hide toast');
     $('#liveToast').hide();

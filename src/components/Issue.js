@@ -9,15 +9,6 @@ import $ from 'jquery';
 const API_URL = process.env.REACT_APP_API_URL;
 
 const Issues = (props) => {
-  console.log(props);
-  const user = JSON.parse(
-    localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
-  )?.userID;
-  if (!user) {
-    localStorage.clear();
-    props.history.push('/');
-    return;
-  }
   const [IsLoading, setIsLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState(
     props.location.state?.currentUser
@@ -36,7 +27,15 @@ const Issues = (props) => {
   const [searchIssueAuthor, setsearchIssueAuthor] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const [successMsg, setsuccessMsg] = useState('');
-
+  console.log(props);
+  const user = JSON.parse(
+    localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
+  )?.userID;
+  if (!user) {
+    localStorage.clear();
+    props.history.push('/');
+    return;
+  }
   console.log(IssueLabel, labeloptions[0]);
   const hidetoast = () => {
     console.log('hide toast');
