@@ -17,9 +17,7 @@ class Login extends Component {
       signupPassword: '',
       currentUser: {},
       errorMsg: '',
-      //   isLoggedin: this.props.location.state.isLoggedin,
     };
-    // this.isLoggedin = this.props.location.state.isLoggedin;
   }
 
   setUserEmail = (e) => {
@@ -61,7 +59,6 @@ class Login extends Component {
         });
 
         let parsedResponse = await response.json();
-        //   this.setState({ currentUser: parsedResponse });
         console.log('>>>', parsedResponse);
         if (parsedResponse.msg == 'Login successful') {
           console.log(this.props.history);
@@ -99,18 +96,6 @@ class Login extends Component {
       signupPassword,
     };
 
-    // var formBody = [];
-    // for (var property in userObj) {
-    //   var encodedKey = encodeURIComponent(property);
-    //   var encodedValue = encodeURIComponent(userObj[property]);
-    //   formBody.push(encodedKey + "=" + encodedValue);
-    // }
-    // formBody = formBody.join("&");
-
-    // let formdata = new FormData();
-
-    // formdata.append('email', email);
-    // formdata.append('password', password);
     try {
       let response = await fetch(`${API_URL}/user/signup`, {
         method: 'POST',
@@ -140,59 +125,9 @@ class Login extends Component {
     const { email, password, signupEmail, signupPassword, currentUser } =
       this.state;
 
-    // return (
-    //   <div>
-    //     <h2>Login</h2>
-
-    //     {/* <form onSubmit={this.userSignupHandler}>
-    //       <label htmlFor='email'> Email: </label>
-    //       <input
-    //         type='email'
-    //         name='email'
-    //         value={signupEmail}
-    //         onChange={this.setUserSignupEmail}
-    //       />
-
-    //       <label htmlFor='password'> Password: </label>
-    //       <input
-    //         type='password'
-    //         name='password'
-    //         value={signupPassword}
-    //         onChange={this.setUserSignupPassword}
-    //       />
-
-    //       <button type='submit'> Signup </button>
-    //     </form> */}
-
-    //     <form onSubmit={this.userSigninHandler}>
-    //       <label htmlFor='email'> Email: </label>
-    //       <input
-    //         type='email'
-    //         name='email'
-    //         value={email}
-    //         onChange={this.setUserEmail}
-    //       />
-
-    //       <label htmlFor='password'> Password: </label>
-    //       <input
-    //         type='password'
-    //         name='password'
-    //         value={password}
-    //         onChange={this.setUserPassword}
-    //       />
-
-    //       <button type='submit'> Login </button>
-    //     </form>
-
-    //     {/* <Projects user={currentUser} /> */}
-    //   </div>
-    // );
-
     return (
       <>
-        <section
-          class='h-100 gradient-form' /* style={{ backgroundColor: '#eee' }}*/
-        >
+        <section class='h-100 gradient-form'>
           <div class='container py-5 h-100'>
             <div class='row d-flex justify-content-center align-items-center h-100'>
               <div class='col-xl-10'>
@@ -224,9 +159,6 @@ class Login extends Component {
                               value={email}
                               onChange={this.setUserEmail}
                             />
-                            {/* <label class='form-label' for='form2Example11'>
-                              Username
-                            </label> */}
                           </div>
 
                           <div class='form-outline mb-4'>
@@ -238,9 +170,6 @@ class Login extends Component {
                               value={password}
                               onChange={this.setUserPassword}
                             />
-                            {/* <label class='form-label' for='form2Example22'>
-                              Password
-                            </label> */}
                           </div>
 
                           <div class='text-center pt-1 mb-5 pb-1'>

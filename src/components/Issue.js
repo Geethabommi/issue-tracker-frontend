@@ -145,7 +145,6 @@ const Issues = (props) => {
           setIsLoading(true);
           let response = await fetch(`${API_URL}/issue/search?${issueObj}`, {
             method: 'GET',
-            // body: JSON.stringify(issueObj),
             headers: {
               'Content-Type': 'application/json',
               Authorization: `Bearer ${currentUser.token}`,
@@ -168,9 +167,6 @@ const Issues = (props) => {
               setIssueList(parsedResponse.issues);
               return;
             }
-
-            //   fetchAllIssues();
-            //   clearIssueInputState();
           }
         } catch (error) {
           console.log(error);
@@ -194,7 +190,6 @@ const Issues = (props) => {
       setIsLoading(true);
       let response = await fetch(`${API_URL}/issue/all/${currentProject}`, {
         method: 'GET',
-        // body: JSON.stringify(projectObj),
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${currentUser?.token}`,
@@ -330,9 +325,6 @@ const Issues = (props) => {
                     {labeloptions.map(function (label) {
                       return <option value={label}>{label}</option>;
                     })}
-                    {/* <option selected value='Select'>
-                      Select
-                    </option> */}
                   </select>
                 </div>
               </div>

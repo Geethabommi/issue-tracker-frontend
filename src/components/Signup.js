@@ -141,12 +141,9 @@ class Signup extends Component {
   render() {
     const { email, password, signupEmail, signupPassword, currentUser } =
       this.state;
-    // console.log('render signup');
 
     return (
-      <section
-        class='h-100 gradient-form' /* style={{ backgroundColor: '#eee' }}*/
-      >
+      <section class='h-100 gradient-form'>
         <div class='container py-5 h-100'>
           <div class='row d-flex justify-content-center align-items-center h-100'>
             <div class='col-xl-10'>
@@ -189,9 +186,6 @@ class Signup extends Component {
                             value={signupPassword}
                             onChange={this.setUserSignupPassword}
                           />
-                          {/* <label class='form-label' for='form2Example22'>
-                              Password
-                            </label> */}
                         </div>
 
                         <div class='text-center pt-1 mb-5 pb-1'>
@@ -203,7 +197,6 @@ class Signup extends Component {
                           </button>
                         </div>
                         <div class='d-flex align-items-center justify-content-center pb-4'>
-                          {/* <p class='mb-0 me-2'>Already have an account?</p> */}
                           <button
                             type='button'
                             class='btn btn-outline-danger'
@@ -241,7 +234,7 @@ class Signup extends Component {
             aria-atomic='true'
           >
             <div class='toast-header'>
-              <strong class='me-auto'>Error</strong>
+              <strong class='me-auto'>Success</strong>
               <button
                 type='button'
                 class='btn-close'
