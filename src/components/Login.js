@@ -86,33 +86,6 @@ class Login extends Component {
     }
   };
 
-  userSignupHandler = async (e) => {
-    e.preventDefault();
-
-    const { signupEmail, signupPassword } = this.state;
-
-    let userObj = {
-      signupEmail,
-      signupPassword,
-    };
-
-    try {
-      let response = await fetch(`${API_URL}/user/signup`, {
-        method: 'POST',
-        body: JSON.stringify(userObj),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      let parsedResponse = await response.json();
-
-      console.log('>>>', parsedResponse);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   handleSignup = () => {
     this.props.history.push('/signup');
   };

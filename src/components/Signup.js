@@ -17,6 +17,7 @@ class Signup extends Component {
       signupPassword: '',
       currentUser: {},
       errorMsg: '',
+      successMsg: '',
     };
   }
 
@@ -36,38 +37,11 @@ class Signup extends Component {
     this.setState({ signupPassword: e.target.value });
   };
 
-  userSigninHandler = async (e) => {
-    e.preventDefault();
-
-    const { email, password } = this.state;
-
-    let userObj = {
-      email,
-      password,
-    };
-
-    try {
-      let response = await fetch(`${API_URL}/user/login`, {
-        method: 'POST',
-        body: JSON.stringify(userObj),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      let parsedResponse = await response.json();
-
-      this.setState({ currentUser: parsedResponse });
-
-      console.log('>>>', parsedResponse);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   userSignupHandler = async (e) => {
     e.preventDefault();
-    this.setState({ errorMsg: '' });
+    this.setState({ errorMsg: '', successMsg: '' });
+    $('#liveSuccessToast').hide();
+    $('#liveToast').hide();
     const { signupEmail, signupPassword } = this.state;
     if (signupEmail && signupPassword) {
       let userObj = {
@@ -89,10 +63,10 @@ class Signup extends Component {
         console.log('>>>', parsedResponse);
         if (parsedResponse.msg == 'Signup successful') {
           this.setState(
-            { errorMsg: 'Sign up successfully,Please Login' },
+            { successMsg: 'Sign up successfully,Please Login' },
             () => {
               console.log('show toast');
-              $('#liveToast').show();
+              $('#liveSuccessToast').show();
             }
           );
           setTimeout(() => {
@@ -234,7 +208,7 @@ class Signup extends Component {
             aria-atomic='true'
           >
             <div class='toast-header'>
-              <strong class='me-auto'>Success</strong>
+              <strong class='me-auto'>Error</strong>
               <button
                 type='button'
                 class='btn-close'
@@ -244,6 +218,28 @@ class Signup extends Component {
               ></button>
             </div>
             <div class='toast-body'>{this.state.errorMsg}</div>
+          </div>
+        </div>
+
+        <div class='position-fixed bottom-0 end-0 p-3' style={{ zIndex: '11' }}>
+          <div
+            id='liveSuccessToast'
+            class='toast hide'
+            role='alert'
+            aria-live='assertive'
+            aria-atomic='true'
+          >
+            <div class='toast-header'>
+              <strong class='me-auto'>Success</strong>
+              <button
+                type='button'
+                class='btn-close'
+                data-bs-dismiss='toast'
+                aria-label='Close'
+                onClick={hideSuccesstoast}
+              ></button>
+            </div>
+            <div class='toast-body'>{successMsg}</div>
           </div>
         </div>
       </section>
