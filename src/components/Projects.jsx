@@ -16,6 +16,7 @@ const Projects = (props) => {
   const [projectList, setProjectList] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const [successMsg, setsuccessMsg] = useState('');
+  const [IsLoading, setIsLoading] = useState(true);
 
   console.log(props);
 
