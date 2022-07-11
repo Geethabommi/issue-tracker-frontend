@@ -75,6 +75,7 @@ const Issues = (props) => {
       issueObj.label
     ) {
       try {
+        setIsLoading(true);
         let response = await fetch(`${API_URL}/issue/create`, {
           method: 'POST',
           body: JSON.stringify(issueObj),
@@ -85,7 +86,7 @@ const Issues = (props) => {
         });
 
         let parsedResponse = await response.json();
-
+        setIsLoading(false);
         console.log('>>>project created', parsedResponse);
         if (parsedResponse) {
           if (parsedResponse.message == 'Issue title already existed') {
@@ -118,7 +119,6 @@ const Issues = (props) => {
 
   const issueSearchHandler = async (e) => {
     e.preventDefault();
-
     hidetoast();
     hideSuccesstoast();
     let issueObj =
@@ -142,6 +142,7 @@ const Issues = (props) => {
         searchIssueAuthor
       ) {
         try {
+          setIsLoading(true);
           let response = await fetch(`${API_URL}/issue/search?${issueObj}`, {
             method: 'GET',
             // body: JSON.stringify(issueObj),
@@ -152,6 +153,7 @@ const Issues = (props) => {
           });
 
           let parsedResponse = await response.json();
+          setIsLoading(false);
 
           console.log('>>>project searched', parsedResponse);
           if (parsedResponse) {
@@ -200,7 +202,6 @@ const Issues = (props) => {
       });
 
       let parsedResponse = await response.json();
-
       console.log('>>>Issue list', parsedResponse);
       setIssueList(parsedResponse.issues);
       setIsLoading(false);
@@ -251,133 +252,6 @@ const Issues = (props) => {
       );
     });
   }
-  // return (
-  //   <>
-  //     <Link
-  //       to={{
-  //         pathname: '/projects',
-  //         state: {
-  //           currentUser: currentUser,
-  //         },
-  //       }}
-  //     >
-  //       back
-  //     </Link>
-  //     {IsLoading ? (
-  //       <div>
-  //         <p>Loading...</p>
-  //       </div>
-  //     ) : (
-  //       <div>
-  //         <h1> Create a Issue </h1>
-
-  //         <form onSubmit={issueCreationHandler}>
-  //           <input
-  //             type='text'
-  //             name='title'
-  //             placeholder='Title'
-  //             value={IssueTitle}
-  //             onChange={(event) => setIssueTitle(event.target.value)}
-  //           />
-
-  //           <input
-  //             type='text'
-  //             name='description'
-  //             placeholder='description'
-  //             value={IssueDescription}
-  //             onChange={(event) => setIssueDescription(event.target.value)}
-  //           />
-  //           {/* <input
-  //             type='text'
-  //             name='title'
-  //             value={IssueLabel}
-  //             onChange={(event) => setIssueLabel(event.target.value)}
-  //           /> */}
-  //           <select
-  //             name='label'
-  //             title='label'
-  //             onChange={(event) => setIssueLabel(event.target.value)}
-  //           >
-  //             {labeloptions.map(function (label) {
-  //               return (
-  //                 <option value={label} selected={IssueLabel === label}>
-  //                   {label}
-  //                 </option>
-  //               );
-  //             })}
-  //           </select>
-  //           <input type='submit' name='Create Issue' />
-  //         </form>
-
-  //         <h1>List Of Issues </h1>
-  //         <div>
-  //           <h2>Filter and search</h2>
-  //           <div>
-  //             <input
-  //               type='text'
-  //               name='Searchtitle'
-  //               placeholder='Search Title'
-  //               value={searchIssueTitle}
-  //               onChange={(event) => setsearchIssueTitle(event.target.value)}
-  //             />
-  //             <input
-  //               type='text'
-  //               name='Searchdescription'
-  //               placeholder='Title'
-  //               value={searchIssueDesc}
-  //               onChange={(event) => setsearchIssueDesc(event.target.value)}
-  //             />
-  //             <input
-  //               type='text'
-  //               name='Searchauthor'
-  //               placeholder='Author'
-  //               value={searchIssueAuthor}
-  //               onChange={(event) => setsearchIssueAuthor(event.target.value)}
-  //             />
-  //             <select
-  //               name='Searchlabel'
-  //               title='Searchlabel'
-  //               onChange={handleSearchIssueLabel}
-  //               id='Searchlabel'
-  //             >
-  //               {labeloptions.map(function (label) {
-  //                 return <option value={label}>{label}</option>;
-  //               })}
-  //               <option selected value='Select'>
-  //                 Select
-  //               </option>
-  //             </select>
-  //             <input
-  //               type='button'
-  //               label='search Issue'
-  //               value='search Issue'
-  //               onClick={issueSearchHandler}
-  //             />
-  //             <input
-  //               type='button'
-  //               label='Clear Search'
-  //               value='Clear Search'
-  //               onClick={clearSearchfilter}
-  //             />
-  //           </div>
-  //         </div>
-  //         <ul>
-  //           <table>
-  //             <thead>
-  //               <tr>
-  //                 <th>Title</th>
-  //                 <th>Description</th>
-  //                 <th>Label</th>
-  //                 <th>Author</th>
-  //               </tr>
-  //             </thead>
-  //             <tbody>{renderTodo}</tbody>
-  //           </table>
-  //         </ul>
-  //       </div>
-  //     )}
-  //   </>
-  // );
 
   return (
     <div>
@@ -589,7 +463,6 @@ const Issues = (props) => {
               aria-atomic='true'
             >
               <div class='toast-header'>
-                {/* <img src="..." class="rounded me-2" alt="..."> */}
                 <strong class='me-auto'>Success</strong>
                 <button
                   type='button'

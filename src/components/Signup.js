@@ -46,19 +46,6 @@ class Signup extends Component {
       password,
     };
 
-    //     var formBody = [];
-    // for (var property in userObj) {
-    //   var encodedKey = encodeURIComponent(property);
-    //   var encodedValue = encodeURIComponent(userObj[property]);
-    //   formBody.push(encodedKey + "=" + encodedValue);
-    // }
-    // formBody = formBody.join("&");
-
-    //     let formdata = new FormData();
-
-    //     formdata.append('email', email);
-    //     formdata.append('password', password);
-
     try {
       let response = await fetch(`${API_URL}/user/login`, {
         method: 'POST',

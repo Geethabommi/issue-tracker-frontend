@@ -3,6 +3,7 @@ import { useEffect, useMemo } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import './assets/Projects.css';
 import $ from 'jquery';
+import dotLoader from './assets/images/dotloader.gif';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -56,6 +57,8 @@ const Projects = (props) => {
 
     if (projectObj.title && projectObj.user && projectObj.description) {
       try {
+        setIsLoading(true);
+
         let response = await fetch(`${API_URL}/project/create`, {
           method: 'POST',
           body: JSON.stringify(projectObj),
@@ -66,7 +69,7 @@ const Projects = (props) => {
         });
 
         let parsedResponse = await response.json();
-
+        setIsLoading(false);
         console.log('>>>project created', parsedResponse);
         if (parsedResponse.message == 'Project already exists') {
           setErrorMsg('Project already exists');
@@ -106,6 +109,7 @@ const Projects = (props) => {
 
   const fetchAllProject = async () => {
     try {
+      setIsLoading(true);
       let response = await fetch(`${API_URL}/project/all`, {
         method: 'GET',
         //   body: JSON.stringify(projectObj),
@@ -116,7 +120,7 @@ const Projects = (props) => {
       });
 
       let parsedResponse = await response.json();
-
+      setIsLoading(false);
       console.log('>>>project created', parsedResponse);
       setProjectList(parsedResponse.project);
     } catch (error) {
@@ -128,56 +132,6 @@ const Projects = (props) => {
     localStorage.clear();
     props.history.push('/');
   };
-
-  //   return (
-  //     <div>
-  //       <input type='button' value='Sign out' onClick={handleSignout}></input>
-  //       <h1> Create a project </h1>
-
-  //       <form onSubmit={projectCreationHandler}>
-  //         <input
-  //           type='text'
-  //           name='title'
-  //           value={projectTitle}
-  //           onChange={(event) => setProjectTitle(event.target.value)}
-  //         />
-
-  //         <input
-  //           type='text'
-  //           name='title'
-  //           value={projectDescription}
-  //           onChange={(event) => setProjectDescription(event.target.value)}
-  //         />
-
-  //         <input type='submit' name='Create Project' />
-  //       </form>
-
-  //       <h1>List Of available Project</h1>
-  //       <ul>
-  //         {projectList &&
-  //           projectList?.map((todo, index) => {
-  //             return (
-  //               <>
-  //                 <li>
-  //                   <Link
-  //                     to={{
-  //                       pathname: '/issues',
-  //                       state: {
-  //                         currentUser: currentUser,
-  //                         currentProject: todo._id,
-  //                       },
-  //                     }}
-  //                   >
-  //                     {todo.title}
-  //                   </Link>
-  //                 </li>
-  //                 <li>{todo.description}</li>
-  //               </>
-  //             );
-  //           })}
-  //       </ul>
-  //     </div>
-  //   );
 
   let renderTodos =
     projectList &&
@@ -220,109 +174,124 @@ const Projects = (props) => {
           </form>
         </div>
       </nav>
-      <div className='createform'>
-        <h2> Create a project </h2>
-        <form onSubmit={projectCreationHandler}>
-          <div class='row mb-3'>
-            <label for='inputEmail' class='col-sm-2 col-form-label'>
-              Title
-            </label>
-            <div class='col-sm-10'>
-              <input
-                type='text'
-                class='form-control'
-                id='inputTitle'
-                placeholder='Title'
-                name='title'
-                value={projectTitle}
-                onChange={(event) => setProjectTitle(event.target.value)}
-              />
-            </div>
-          </div>
-          <div class='row mb-3'>
-            <label for='inputPassword' class='col-sm-2 col-form-label'>
-              Description
-            </label>
-            <div class='col-sm-10'>
-              <input
-                type='text'
-                class='form-control'
-                id='inputDescription'
-                placeholder='Description'
-                name='Description'
-                value={projectDescription}
-                onChange={(event) => setProjectDescription(event.target.value)}
-              />
-            </div>
-          </div>
-
-          <div class='row'>
-            <div class='col-sm-10 offset-sm-2'>
-              <button type='submit' class='btn btn-primary'>
-                Submit
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div className='projecttable'>
-        <h2>List of Projects</h2>
-        <table class='table table-bordered'>
-          <thead>
-            <tr>
-              <th scope='col'>S.No</th>
-              <th scope='col'>Title</th>
-              <th scope='col'>Description</th>
-            </tr>
-          </thead>
-          <tbody>{renderTodos}</tbody>
-        </table>
-      </div>
-
-      <div class='position-fixed bottom-0 end-0 p-3' style={{ zIndex: '11' }}>
-        <div
-          id='liveToast'
-          class='toast hide'
-          role='alert'
-          aria-live='assertive'
-          aria-atomic='true'
-        >
-          <div class='toast-header'>
-            {/* <img src="..." class="rounded me-2" alt="..."> */}
-            <strong class='me-auto'>Error</strong>
-            <button
-              type='button'
-              class='btn-close'
-              data-bs-dismiss='toast'
-              aria-label='Close'
-              onClick={hidetoast}
-            ></button>
-          </div>
-          <div class='toast-body'>{errorMsg}</div>
+      {IsLoading ? (
+        <div className='loader'>
+          <img src={dotLoader} alt='loader' />
         </div>
-      </div>
+      ) : (
+        <>
+          <div className='createform'>
+            <h2> Create a project </h2>
+            <form onSubmit={projectCreationHandler}>
+              <div class='row mb-3'>
+                <label for='inputEmail' class='col-sm-2 col-form-label'>
+                  Title
+                </label>
+                <div class='col-sm-10'>
+                  <input
+                    type='text'
+                    class='form-control'
+                    id='inputTitle'
+                    placeholder='Title'
+                    name='title'
+                    value={projectTitle}
+                    onChange={(event) => setProjectTitle(event.target.value)}
+                  />
+                </div>
+              </div>
+              <div class='row mb-3'>
+                <label for='inputPassword' class='col-sm-2 col-form-label'>
+                  Description
+                </label>
+                <div class='col-sm-10'>
+                  <input
+                    type='text'
+                    class='form-control'
+                    id='inputDescription'
+                    placeholder='Description'
+                    name='Description'
+                    value={projectDescription}
+                    onChange={(event) =>
+                      setProjectDescription(event.target.value)
+                    }
+                  />
+                </div>
+              </div>
 
-      <div class='position-fixed bottom-0 end-0 p-3' style={{ zIndex: '11' }}>
-        <div
-          id='liveSuccessToast'
-          class='toast hide'
-          role='alert'
-          aria-live='assertive'
-          aria-atomic='true'
-        >
-          <div class='toast-header'>
-            <strong class='me-auto'>Success</strong>
-            <button
-              type='button'
-              class='btn-close'
-              data-bs-dismiss='toast'
-              aria-label='Close'
-              onClick={hideSuccesstoast}
-            ></button>
+              <div class='row'>
+                <div class='col-sm-10 offset-sm-2'>
+                  <button type='submit' class='btn btn-primary'>
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
-          <div class='toast-body'>{successMsg}</div>
-        </div>
-      </div>
+          <div className='projecttable'>
+            <h2>List of Projects</h2>
+            <table class='table table-bordered'>
+              <thead>
+                <tr>
+                  <th scope='col'>S.No</th>
+                  <th scope='col'>Title</th>
+                  <th scope='col'>Description</th>
+                </tr>
+              </thead>
+              <tbody>{renderTodos}</tbody>
+            </table>
+          </div>
+
+          <div
+            class='position-fixed bottom-0 end-0 p-3'
+            style={{ zIndex: '11' }}
+          >
+            <div
+              id='liveToast'
+              class='toast hide'
+              role='alert'
+              aria-live='assertive'
+              aria-atomic='true'
+            >
+              <div class='toast-header'>
+                <strong class='me-auto'>Error</strong>
+                <button
+                  type='button'
+                  class='btn-close'
+                  data-bs-dismiss='toast'
+                  aria-label='Close'
+                  onClick={hidetoast}
+                ></button>
+              </div>
+              <div class='toast-body'>{errorMsg}</div>
+            </div>
+          </div>
+
+          <div
+            class='position-fixed bottom-0 end-0 p-3'
+            style={{ zIndex: '11' }}
+          >
+            <div
+              id='liveSuccessToast'
+              class='toast hide'
+              role='alert'
+              aria-live='assertive'
+              aria-atomic='true'
+            >
+              <div class='toast-header'>
+                <strong class='me-auto'>Success</strong>
+                <button
+                  type='button'
+                  class='btn-close'
+                  data-bs-dismiss='toast'
+                  aria-label='Close'
+                  onClick={hideSuccesstoast}
+                ></button>
+              </div>
+              <div class='toast-body'>{successMsg}</div>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
