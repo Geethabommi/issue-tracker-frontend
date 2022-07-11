@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# Issue Tracker App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Issue Tracker web application is a scalable issue management and tracking application.
+It is used to create, lists the projects and manages the issues.
 
-## Available Scripts
+# Tools,stacks and library used:
 
-In the project directory, you can run:
+## Backend
 
-### `npm start`
+Nodejs,expressjs,passport-jwt,mongoose,mongodb
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Frontend
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Reactjs,bootstrap,jquery
 
-### `npm test`
+# Deployment:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The Issue Tracker web application is deployed at https://issue-tracker-app-client.herokuapp.com/
 
-### `npm run build`
+# Key Functionalities & Workflow :
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 1) Sign Up :
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+       User can create new account using mail address and password.if inputs are not given error message
+       will be shown at the bottom right side.for successful signup,success message will be shown.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 2) Login in :
 
-### `npm run eject`
+        User can login to the application using already created account by using email address and password.
+        In case of successful login,success message will be shown and the page redirects to the project list
+        screen.otherwise,error message will be shown in the application.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 3)Projects Screen:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+        1) Create Project:
+            Project can be created by giving title and description.In case of error,error message will be shown.
+            Otherwise success message will be shown.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+        2) List Projects:
+            Created project will be displayed in the screen.User can navigate to the issue creation by clicking on the issue in table cell.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 4)Issue Screen:
 
-## Learn More
+        1) Create Issue:
+            Issue can be created by giving the inputs such as title,description,label and author value will be
+            taken from issue creator.User can select the label value from the dropdown.Upon submit,issue will be created.If created successfully,Success message will be shown,otherwise error message will be shown.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+        2) Search and list issue:
+            Issues will be displayed in the screen based on the search value given in the search inputs such as
+            title,description,author and label by clicking on the search issue button.Search values will be cleared
+            upon click of the clear search issue.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# To run the project :
 
-### Code Splitting
+Open terminal.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Change the current working directory to the location where you want the cloned directory.
 
-### Analyzing the Bundle Size
+$ git clone the repo
+Install all the dependencies by running :
+npm install
+Create development variables in environment file
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Run npm start to run the project at local host for frontend, port 3000:
 
-### Making a Progressive Web App
+npm start
+In your browser, enter the URL :
+localhost:3000/
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Replicate the same instrucations for backend on port 8000:
+npm start
