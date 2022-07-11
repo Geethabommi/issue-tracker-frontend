@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { labeloptions } from '../constants';
 import './assets/Issues.css';
@@ -28,14 +28,16 @@ const Issues = (props) => {
   const [errorMsg, setErrorMsg] = useState('');
   const [successMsg, setsuccessMsg] = useState('');
   console.log(props);
-  const user = JSON.parse(
-    localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
-  )?.userID;
-  if (!user) {
-    localStorage.clear();
-    props.history.push('/');
-    return;
-  }
+  useMemo(() => {
+    const user = JSON.parse(
+      localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
+    )?.userID;
+    if (!user) {
+      localStorage.clear();
+      props.history.push('/');
+      return;
+    }
+  });
   console.log(IssueLabel, labeloptions[0]);
   const hidetoast = () => {
     console.log('hide toast');

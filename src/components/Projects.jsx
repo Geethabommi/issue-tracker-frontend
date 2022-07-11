@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import './assets/Projects.css';
 import $ from 'jquery';
@@ -17,14 +17,17 @@ const Projects = (props) => {
   const [successMsg, setsuccessMsg] = useState('');
 
   console.log(props);
-  const user = JSON.parse(
-    localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
-  )?.userID;
-  if (!user) {
-    localStorage.clear();
-    props.history.push('/');
-    return;
-  }
+
+  useMemo(() => {
+    const user = JSON.parse(
+      localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
+    )?.userID;
+    if (!user) {
+      localStorage.clear();
+      props.history.push('/');
+      return;
+    }
+  });
   const hidetoast = () => {
     console.log('hide toast');
     $('#liveToast').hide();
@@ -125,8 +128,6 @@ const Projects = (props) => {
     localStorage.clear();
     props.history.push('/');
   };
-
-  console.log(user);
 
   //   return (
   //     <div>
