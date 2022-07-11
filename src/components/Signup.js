@@ -110,6 +110,7 @@ class Signup extends Component {
   hidetoast = () => {
     console.log('hide toast');
     $('#liveToast').hide();
+    $('#liveSuccessToast').hide();
   };
 
   render() {
@@ -236,10 +237,10 @@ class Signup extends Component {
                 class='btn-close'
                 data-bs-dismiss='toast'
                 aria-label='Close'
-                onClick={hideSuccesstoast}
+                onClick={this.hidetoast}
               ></button>
             </div>
-            <div class='toast-body'>{successMsg}</div>
+            <div class='toast-body'>{this.state.successMsg}</div>
           </div>
         </div>
       </section>
