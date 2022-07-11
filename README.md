@@ -23,12 +23,18 @@ The Issue Tracker web application is deployed at https://issue-tracker-app-clien
 
        User can create new account using mail address and password.if inputs are not given error message
        will be shown at the bottom right side.for successful signup,success message will be shown.
+  
+
+     
+![Screenshot (38)](https://user-images.githubusercontent.com/30235824/178324519-51c809f1-9b94-403c-89a7-f4d8430ca32a.png)
 
 ## 2) Login in :
 
         User can login to the application using already created account by using email address and password.
         In case of successful login,success message will be shown and the page redirects to the project list
         screen.otherwise,error message will be shown in the application.
+
+![Screenshot (37)](https://user-images.githubusercontent.com/30235824/178324750-47ff5753-e091-4dd2-a701-fcf6aeaea02d.png)
 
 ## 3)Projects Screen:
 
@@ -38,6 +44,7 @@ The Issue Tracker web application is deployed at https://issue-tracker-app-clien
 
         2) List Projects:
             Created project will be displayed in the screen.User can navigate to the issue creation by clicking on the issue in table cell.
+![Screenshot (39)](https://user-images.githubusercontent.com/30235824/178325419-79031f6a-3f77-4e6b-a3ce-7337ed9efd7f.png)
 
 ## 4)Issue Screen:
 
@@ -49,6 +56,7 @@ The Issue Tracker web application is deployed at https://issue-tracker-app-clien
             Issues will be displayed in the screen based on the search value given in the search inputs such as
             title,description,author and label by clicking on the search issue button.Search values will be cleared
             upon click of the clear search issue.
+![Screenshot (40)](https://user-images.githubusercontent.com/30235824/178325458-e41501e1-3979-4f81-ba9e-133f6a16284a.png)
 
 # To run the project :
 
